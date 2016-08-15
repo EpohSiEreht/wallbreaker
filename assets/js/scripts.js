@@ -1,24 +1,6 @@
 var canvas = document.getElementById("myCanvas"),
 	ctx = canvas.getContext("2d");
 
-// ctx.beginPath();
-// ctx.rect(20, 40, 50, 50);
-// ctx.fillStyle = "#fff";
-// ctx.fill();
-// ctx.closePath();
-
-// ctx.beginPath();
-// ctx.arc(240, 160, 20, 0, Math.PI*2, false);
-// ctx.fillStyle = "#3399ff";
-// ctx.fill();
-// ctx.closePath();
-
-// ctx.beginPath();
-// ctx.rect(160, 10, 100, 40);
-// ctx.strokeStyle = "#000";
-// ctx.stroke();
-// ctx.closePath();
-
 var x = canvas.width/2,
 	y = canvas.height - 30,
 	dx = 2,
