@@ -3,7 +3,8 @@
 }
 
 canvas { 
-	background: #ff9900; 
+	background: #fff; 
 	display: block; 
 	margin: 0 auto; 
+	border: 1px solid #000;
 }
