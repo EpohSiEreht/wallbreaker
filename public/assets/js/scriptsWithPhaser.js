@@ -20,7 +20,7 @@ function preload() {
     // game.scale.pageAlignHorizontally = true;
     // game.scale.pageAlignVertically = true;
     game.stage.backgroundColor = '#eee';
-    game.load.image('ball', '/assets/img/ball.png');
+    game.load.image('ball', '/assets/img/ball1.png');
     game.load.image('paddle', '/assets/img/paddle.png');
     game.load.image('brick1', '/assets/img/brick1.png');
     game.load.image('brick2', '/assets/img/brick2.png');
@@ -31,9 +31,9 @@ function preload() {
 function create() {
     game.physics.startSystem(Phaser.Physics.ARCADE);
     game.physics.arcade.checkCollision.down = false;
-    ball = game.add.sprite(game.world.width * 0.5, game.world.height - 25, 'ball');
+    ball = game.add.sprite(game.world.width * 0.5, game.world.height - 30, 'ball');
     // ball.animations.add('wobble', [0,1,0,2,0,1,0,2,0], 24);
-    ball.anchor.set(0.5);
+    ball.anchor.set(0.5,0.8);
     game.physics.enable(ball, Phaser.Physics.ARCADE);
     ball.body.collideWorldBounds = true;
     ball.body.bounce.set(1);
@@ -67,21 +67,21 @@ function update() {
 }
 function initBricks() {
     brickInfo = {
-        width: 80,
-        height: 80,
+        width: 40,
+        height: 40,
         count: {
             row: 4,
-            col: 3
+            col: 6
         },
         offset: {
             top: 100,
-            left: 100
+            left: 110
         },
         padding: 11.25
     }
     bricks = game.add.group();
-    for(c=0; c<brickInfo.count.col; c++) {
-        for(r=0; r<brickInfo.count.row; r++) {
+    for(c=0; c<brickInfo.count.row; c++) {
+        for(r=0; r<brickInfo.count.col; r++) {
             var brickX = (r * (brickInfo.width + brickInfo.padding)) + brickInfo.offset.left;
             var brickY = (c * (brickInfo.height + brickInfo.padding)) + brickInfo.offset.top;
             var character = ['brick1', 'brick2', 'brick3'];
@@ -91,6 +91,7 @@ function initBricks() {
                 return Math.floor(Math.random() * (max - min + 1)) + min;
             }
             newBrick = game.add.sprite(brickX, brickY, character[randomCharacter(0, character.length -1)]);
+            newBrick.scale.setTo(0.5,0.5);
             game.physics.enable(newBrick, Phaser.Physics.ARCADE);
             newBrick.body.immovable = true;
             newBrick.anchor.set(0.5);
@@ -121,7 +122,7 @@ function ballLeaveScreen() {
         paddle.reset(game.world.width * 0.5, game.world.height - 5);
         game.input.onDown.addOnce(function(){
             lifeLostText.visible = false;
-            ball.body.velocity.set(150, -150);
+            ball.body.velocity.set(300, -300);
         }, this);
     }
     else {
